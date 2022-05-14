@@ -1,0 +1,15 @@
+networks:
+  frontend:
+    external: ${DOCKER_PROXY_EXT-true}
+    name: ${DOCKER_PROXY_NETWORK}
+
+services:
+  cinny:
+    image: ajbura/cinny:${CINNY_TAG}
+    container_name: cinny
+    restart: unless-stopped
+    networks:
+      - frontend
+    # Uncomment if you're not using a Docker network for proxying
+    # ports:
+    #   - 8080:80
